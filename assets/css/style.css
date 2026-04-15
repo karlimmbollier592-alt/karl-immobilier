@@ -407,15 +407,6 @@ img {
     background-repeat: no-repeat;
 }
 
-.hero-bg-overlay {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-    background-color: rgba(31, 36, 69, 0.4); /* Dark blue overlay pour contraster le texte blanc */
-}
-
 .brand-hero .hero-container {
     position: relative;
     z-index: 10;
