@@ -342,14 +342,14 @@ img {
 }
 
 .header-phone {
-    color: var(--color-text-heading);
+    color: rgba(255, 255, 255, 0.9); /* En blanc car il est sur la bulle bleue */
     font-weight: 700;
     font-size: 0.95rem;
     letter-spacing: 0.02em;
 }
 
 .header-phone:hover {
-    color: var(--color-primary);
+    color: var(--color-white);
 }
 
 /* Couleurs en blanc quand le header est scrollé (fond bleu) */
