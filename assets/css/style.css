@@ -332,23 +332,34 @@ img {
 }
 
 .main-nav a {
-    color: rgba(255, 255, 255, 0.9); /* Liens en blanc */
-    font-weight: 500;
+    color: var(--color-text-heading); /* Liens en bleu foncé par défaut */
+    font-weight: 600;
     font-size: 0.95rem;
 }
 
 .main-nav a:hover {
-    color: var(--color-white);
+    color: var(--color-primary);
 }
 
 .header-phone {
-    color: rgba(255, 255, 255, 0.9);
-    font-weight: 600;
+    color: var(--color-text-heading);
+    font-weight: 700;
     font-size: 0.95rem;
     letter-spacing: 0.02em;
 }
 
 .header-phone:hover {
+    color: var(--color-primary);
+}
+
+/* Couleurs en blanc quand le header est scrollé (fond bleu) */
+.site-header.scrolled .main-nav a,
+.site-header.scrolled .header-phone {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.site-header.scrolled .main-nav a:hover,
+.site-header.scrolled .header-phone:hover {
     color: var(--color-white);
 }
 
@@ -364,10 +375,14 @@ img {
     display: block;
     width: 24px;
     height: 2px;
-    background-color: var(--color-white); /* Hamburger blanc */
+    background-color: var(--color-text-heading); /* Hamburger foncé par défaut */
     margin-bottom: 6px;
     border-radius: 2px;
     transition: 0.3s;
+}
+
+.site-header.scrolled .mobile-menu-toggle span {
+    background-color: var(--color-white); /* Hamburger blanc au scroll */
 }
 
 /* Bouton CTA Header - Inversé pour le fond bleu */
