@@ -1123,12 +1123,45 @@ img {
    Formulaire
    ========================================================================== */
 .form-wrapper {
-    max-width: 650px;
+    max-width: 1000px;
     margin: 0 auto;
     background: var(--color-white);
-    padding: 4rem 3rem;
     border-radius: var(--border-radius-lg);
     border: 1px solid rgba(0,0,0,0.05);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+}
+
+.form-content-side {
+    padding: 4rem 3rem;
+}
+
+.form-image-side {
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    /* Ici tu pourras mettre ton image en background-image ou avec une balise img */
+    background-size: cover;
+    background-position: center;
+}
+
+.image-placeholder-box {
+    text-align: center;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-placeholder-box svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    opacity: 0.8;
 }
 
 .form-group {
@@ -1506,6 +1539,16 @@ img {
     }
     
     .form-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-image-side {
+        min-height: 250px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .form-content-side {
         padding: 2.5rem 1.5rem;
     }
     
