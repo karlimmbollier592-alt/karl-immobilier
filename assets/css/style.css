@@ -2,23 +2,23 @@
    Variables & Reset (High-End Agency Style)
    ========================================================================== */
 :root {
-    /* Couleurs principales (Blanc et Bleu Premium) */
-    --color-primary: #1A56DB; /* Bleu profond, vibrant mais très pro */
-    --color-primary-hover: #1E40AF;
-    --color-primary-light: #EFF6FF;
-    --color-white: #FFFFFF;
-    --color-light: #EFF6FF; /* blue-50 pour que les vagues soient bien visibles */
-    --color-dark: #020617; /* slate-950 */
-    --color-surface: #F1F5F9; /* slate-100 pour les bordures/fonds subtils */
+    /* Charte Graphique AIQ */
+    --color-primary: #2848dd; /* Bright Blue */
+    --color-primary-hover: #1f2445; /* Dark Blue */
+    --color-primary-light: #deefff; /* Light Ice Blue */
+    --color-white: #ffffff;
+    --color-light: #deefff; /* Light Ice Blue (for background waves) */
+    --color-dark: #1f2445; /* Dark Blue from brand */
+    --color-surface: #d7d8d8; /* Light Grey from brand */
     
     /* Couleurs de texte */
-    --color-text-main: #334155; /* slate-700 */
-    --color-text-heading: #020617; /* slate-950, presque noir mais plus riche */
-    --color-text-muted: #64748B; /* slate-500 */
+    --color-text-main: #334155; 
+    --color-text-heading: #1f2445; /* Dark Blue */
+    --color-text-muted: #64748B; 
     
     /* Typographie */
-    --font-heading: 'Bricolage Grotesque', system-ui, sans-serif;
-    --font-body: 'DM Sans', system-ui, sans-serif;
+    --font-heading: 'Montserrat', system-ui, sans-serif;
+    --font-body: 'Roboto', system-ui, sans-serif;
     
     /* Espacements (Massive Whitespace) */
     --spacing-sm: 1.5rem;
@@ -383,125 +383,191 @@ img {
 /* ==========================================================================
    Hero Section (High-End Asymmetrical)
    ========================================================================== */
-.hero {
+/* ==========================================================================
+   Hero Section (Charte Graphique AIQ)
+   ========================================================================== */
+.brand-hero {
     padding-top: 120px; /* Espace pour le header fixe transparent */
-    min-height: 90vh; /* Prend 90% de l'écran pour voir la vague et la suite */
+    min-height: 90vh;
     display: flex;
     align-items: center;
-    background-color: var(--color-white);
+    background-color: var(--color-dark);
     position: relative;
     overflow: hidden;
 }
 
-/* ==========================================================================
-   Hero Background (Mesh Gradient + Grid)
-   ========================================================================== */
-.hero-bg {
+.hero-bg-bw {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     z-index: 0;
-    pointer-events: none;
-    background: linear-gradient(to bottom, var(--color-primary) 0%, #2563EB 100%);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    filter: grayscale(100%);
+    opacity: 0.6; /* Assombri pour contraste */
 }
 
-.blob {
+/* Formes de la marque (Overlay Bleues) */
+.brand-shape {
     position: absolute;
-    filter: blur(60px);
+    background-color: var(--color-primary);
+    border-radius: 50%;
     z-index: 1;
-    opacity: 0.7;
-    animation: float-blob 15s infinite alternate ease-in-out;
+    opacity: 0.9;
 }
 
-.blob-1 {
-    top: -10%;
-    left: -10%;
-    width: 60vw;
-    height: 60vw;
-    background: rgba(147, 197, 253, 0.4);
-    border-radius: 43% 57% 70% 30% / 30% 45% 55% 70%;
-}
-
-.blob-2 {
-    bottom: -20%;
-    right: -10%;
-    width: 70vw;
-    height: 70vw;
-    background: rgba(59, 130, 246, 0.5);
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    animation-delay: -5s;
-}
-
-.blob-3 {
-    top: 20%;
-    right: 30%;
+.shape-circle-accent {
+    top: -15vw;
+    right: -10vw;
     width: 40vw;
     height: 40vw;
-    background: rgba(29, 78, 216, 0.4);
-    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    animation-delay: -10s;
 }
 
-@keyframes float-blob {
-    0% { transform: translate(0, 0) rotate(0deg) scale(1); }
-    100% { transform: translate(5%, 5%) rotate(10deg) scale(1.1); }
+@media (max-width: 992px) {
+    .shape-circle-accent {
+        width: 60vw;
+        height: 60vw;
+        top: -20vw;
+        right: -20vw;
+    }
 }
 
-.bg-grid {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-    mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
-    -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
-    z-index: 2;
+.brand-hero .hero-container {
+    position: relative;
+    z-index: 10;
 }
 
-/* Couleurs du texte dans le Hero */
-.hero h1 {
+.brand-hero .hero-content {
+    max-width: 800px;
+    padding: 2rem 0;
+}
+
+.brand-title {
+    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-family: var(--font-heading);
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    line-height: 1.4;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+
+.brand-box-primary {
+    background-color: var(--color-primary);
     color: var(--color-white);
+    padding: 0.1em 0.4em;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
-.hero .subtitle {
-    color: rgba(255, 255, 255, 0.9);
+.brand-subtitle {
+    font-size: 1.15rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    line-height: 2;
+    letter-spacing: 0.5px;
 }
 
-.hero .hook-line {
+.brand-box-dark {
+    background-color: var(--color-dark);
     color: var(--color-white);
+    padding: 0.2rem 0.6rem;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
-.hero .highlight {
-    color: #93C5FD;
+.brand-hook {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 3rem;
+    font-family: var(--font-heading);
+    line-height: 2;
 }
 
-/* Bouton du Hero (Inversé pour le fond bleu) */
-.hero .btn-primary {
+.brand-box-white {
     background-color: var(--color-white);
     color: var(--color-primary);
+    padding: 0.2rem 0.6rem;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
 }
 
-.hero .btn-primary:hover {
-    background-color: var(--color-light);
-    color: var(--color-primary-hover);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+/* Layer Maison 3D */
+.hero-house-layer {
+    position: absolute;
+    bottom: 0;
+    right: -5%;
+    width: 65%;
+    max-width: 900px;
+    z-index: 2; /* Entre la forme bleue (1) et le contenu (10) */
+    pointer-events: none;
+    animation: float-house 8s ease-in-out infinite;
 }
 
-/* Wave Divider */
-.custom-shape-divider-bottom {
+.hero-house-layer img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+}
+
+@media (max-width: 992px) {
+    .hero-house-layer {
+        width: 90%;
+        right: -15%;
+        bottom: 5%;
+        opacity: 0.8;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-house-layer {
+        width: 100%;
+        right: -20%;
+        bottom: 10%;
+        opacity: 0.4;
+    }
+}
+
+/* Bouton Charte */
+.brand-hero .btn-primary {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    border: 2px solid var(--color-white);
+    font-family: var(--font-heading);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.brand-hero .btn-primary:hover {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    border-color: var(--color-dark);
+}
+
+/* Utilities */
+.relative { position: relative; }
+.z-10 { z-index: 10; }
+.uppercase { text-transform: uppercase; }
+
+/* Modifier the wave divider inside brand hero */
+.brand-hero .custom-shape-divider-bottom {
     position: absolute;
     bottom: -1px;
     left: 0;
     width: 100%;
     overflow: hidden;
     line-height: 0;
-    z-index: 2;
+    z-index: 20;
 }
 
-.custom-shape-divider-bottom svg {
+.brand-hero .custom-shape-divider-bottom svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
@@ -509,92 +575,8 @@ img {
     transform: rotate(180deg);
 }
 
-.custom-shape-divider-bottom .shape-fill {
-    fill: var(--color-light);
-}
-
-.hero-container {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr; /* 60/40 pour donner l'espace parfait au texte */
-    gap: clamp(2rem, 5vw, 6rem); /* Espace ajusté */
-    align-items: center;
-    position: relative;
-    z-index: 1;
-    width: 100%;
-    padding-top: 2rem;
-    padding-bottom: 4rem;
-}
-
-.hero-content {
-    width: 100%;
-    max-width: none; /* Enlève la restriction de largeur pour que le texte s'étende */
-}
-
-.badges-container {
-    display: flex;
-    gap: 1rem;
-    margin-bottom: 2.5rem;
-    flex-wrap: wrap;
-}
-
-.badge {
-    background-color: var(--color-white);
-    color: var(--color-text-heading);
-    padding: 0.5rem 1.25rem;
-    border-radius: 9999px;
-    font-weight: 600;
-    font-size: 0.875rem;
-    border: 1px solid var(--color-surface);
-    box-shadow: var(--shadow-sm);
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.badge-icon {
-    color: var(--color-primary); /* Icônes en bleu pour contraster */
-}
-
-.hero .subtitle {
-    font-size: 1.25rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 2rem;
-    line-height: 1.8;
-}
-
-.hero .hook-line {
-    font-size: 1.125rem;
-    font-weight: 700;
-    color: var(--color-white);
-    margin-bottom: 3rem;
-    letter-spacing: -0.01em;
-}
-
-/* Hero image */
-.hero-image {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-@media (min-width: 992px) {
-    .hero-image {
-        transform: scale(1.5) translateX(2%); /* Image beaucoup plus grande selon la demande */
-        transform-origin: center right;
-    }
-}
-
-/* Aura lumineuse animée derrière la maison */
-.hero-img {
-    width: 100%;
-    height: auto;
-    position: relative;
-    z-index: 1;
-    /* Ombre portée réaliste qui suit les contours de la maison 3D */
-    filter: drop-shadow(0 25px 35px rgba(2, 6, 23, 0.15));
-    /* Animation de lévitation fluide */
-    animation: float-house 6s ease-in-out infinite;
+.brand-hero .custom-shape-divider-bottom .shape-fill {
+    fill: var(--color-light); /* Ice blue as per brand */
 }
 
 /* Animations Premium */

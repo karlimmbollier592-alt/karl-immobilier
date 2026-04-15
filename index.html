@@ -11,10 +11,10 @@
     <meta property="og:description" content="On achète votre maison, plex ou immeuble directement. Offre gratuite en 24h. Financement comptant. Zéro frais de courtier.">
     <meta property="og:type" content="website">
     
-    <!-- Fonts from Manus AI -->
+    <!-- Fonts from Brand Guidelines -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800;12..96,900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet" />
     
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -49,51 +49,38 @@
     </header>
 
     <main>
-        <!-- SB7 #1: Character (Hero) — Le visiteur veut vendre vite -->
-        <section class="hero">
-            <!-- Fond premium (Gradient + Blobs + Grid) -->
-            <div class="hero-bg">
-                <div class="blob blob-1"></div>
-                <div class="blob blob-2"></div>
-                <div class="blob blob-3"></div>
-                <div class="bg-grid"></div>
+        <!-- SB7 #1: Brand Hero (Concept Charte) -->
+        <section class="hero brand-hero">
+            <!-- Image B&W en fond -->
+            <div class="hero-bg-bw" style="background-image: url('assets/images/+952653.png');"></div>
+            
+            <!-- Forme en accent discret (selon la charte) -->
+            <div class="brand-shape shape-circle-accent"></div>
+            
+            <!-- Maison en 3D -->
+            <div class="hero-house-layer">
+                <img src="assets/images/hero-house-transparent.png" alt="Maison">
             </div>
             
-            <div class="container hero-container">
+            <div class="container hero-container relative">
                 <div class="hero-content">
-                    <h1>Votre propriété vendue en<br><span class="highlight">10&nbsp;jours</span>, argent en main</h1>
-                    <p class="subtitle">Pas de courtier. Pas de rénovation. Pas d'attente. On achète directement votre maison, plex ou immeuble.</p>
-                    <p class="hook-line">Offre gratuite en 24h. Financement comptant. Zéro frais.</p>
-                    <a href="#formulaire" class="btn btn-primary btn-large group">
+                    <h1 class="brand-title">
+                        <span class="brand-box-primary">VOTRE PROPRIÉTÉ VENDUE EN</span><br>
+                        <span class="brand-box-primary">10&nbsp;JOURS, ARGENT EN MAIN</span>
+                    </h1>
+                    <p class="subtitle brand-subtitle">
+                        <span class="brand-box-dark">PAS DE COURTIER. PAS DE RÉNOVATION. PAS D'ATTENTE.</span><br>
+                        <span class="brand-box-dark">ON ACHÈTE DIRECTEMENT VOTRE MAISON, PLEX OU IMMEUBLE.</span>
+                    </p>
+                    <p class="hook-line brand-hook">
+                        <span class="brand-box-white">OFFRE GRATUITE EN 24H. FINANCEMENT COMPTANT. ZÉRO FRAIS.</span>
+                    </p>
+                    <a href="#formulaire" class="btn btn-primary btn-large group uppercase mt-medium">
                         <span class="btn-text">Recevoir une offre gratuite</span>
                         <span class="btn-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                         </span>
                     </a>
-                </div>
-                <div class="hero-image">
-                    <img src="assets/images/hero-maison copie.png" alt="Maison moderne au Québec" class="hero-img">
-                    
-                    <!-- Badges Flottants (Style Agence) -->
-                    <div class="floating-badge badge-top-left">
-                        <div class="badge-icon bg-green-light text-green">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                        </div>
-                        <div class="badge-text">
-                            <span class="badge-title">Offre rapide</span>
-                            <span class="badge-desc">En moins de 24h</span>
-                        </div>
-                    </div>
-
-                    <div class="floating-badge badge-bottom-right">
-                        <div class="badge-icon bg-blue-light text-blue">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                        </div>
-                        <div class="badge-text">
-                            <span class="badge-title">100% Comptant</span>
-                            <span class="badge-desc">Zéro commission</span>
-                        </div>
-                    </div>
                 </div>
             </div>
             
