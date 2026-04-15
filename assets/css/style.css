@@ -403,6 +403,7 @@ img {
    ========================================================================== */
 .brand-hero {
     padding-top: 120px; /* Espace pour le header fixe transparent */
+    padding-bottom: 100px; /* Espace pour la vague en bas */
     min-height: 90vh;
     display: flex;
     align-items: center;
@@ -424,12 +425,12 @@ img {
 
 .brand-hero .hero-container {
     position: relative;
-    z-index: 10;
+    z-index: 30;
 }
 
 .brand-hero .hero-content {
     max-width: 800px;
-    padding: 2rem 0;
+    padding: 2rem 0 4rem 0; /* Plus d'espace en bas pour éviter la vague */
 }
 
 .brand-title {
@@ -505,6 +506,7 @@ img {
 /* Utilities */
 .relative { position: relative; }
 .z-10 { z-index: 10; }
+.z-30 { z-index: 30; }
 .uppercase { text-transform: uppercase; }
 
 /* Modifier the wave divider inside brand hero */
