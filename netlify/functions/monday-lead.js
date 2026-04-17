@@ -91,6 +91,7 @@ exports.handler = async (event) => {
       mutation {
         create_item(
           board_id: ${BOARD_PIPELINE},
+          group_id: "topics",
           item_name: ${JSON.stringify(adresse)},
           column_values: ${JSON.stringify(JSON.stringify(pipelineColumns))}
         ) { id name }
