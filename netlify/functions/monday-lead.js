@@ -96,35 +96,10 @@ exports.handler = async (event) => {
     const pipelineData = await mondayMutation(pipelineMutation);
     const pipelineItemId = pipelineData.create_item.id;
 
-    // Étape 3 : Lier le contact au lead (appel séparé, Monday ignore board_relation à la création)
-    if (contactItemId) {
-      try {
-        const linkValue = JSON.stringify({ item_ids: [parseInt(contactItemId, 10)] });
-        const linkMutation = `
-          mutation {
-            change_column_value(
-              board_id: ${BOARD_PIPELINE},
-              item_id: ${pipelineItemId},
-              column_id: "board_relation_mm0ge7xd",
-              value: ${JSON.stringify(linkValue)}
-            ) { id }
-          }
-        `;
-        await mondayMutation(linkMutation);
-      } catch (err) {
-        console.error('Liaison contact-pipeline échouée:', err.message);
-      }
-    }
-
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({
-        success: true,
-        pipeline_id: pipelineItemId,
-        contact_id: contactItemId,
-        linked: contactItemId ? true : false,
-      }),
+      body: JSON.stringify({ success: true, pipeline_id: pipelineItemId }),
     };
   } catch (err) {
     console.error('Création pipeline échouée:', err.message);
