@@ -125,7 +125,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (response.ok && data.success) {
                     contactForm.reset();
-                    successMsg.style.display = 'block';
+                    // Afficher le modal de succès au lieu du petit message
+                    const successModal = document.getElementById('success-modal');
+                    if (successModal) {
+                        successModal.style.display = 'flex';
+                    } else {
+                        successMsg.style.display = 'block'; // Fallback
+                    }
                 } else {
                     errorMsg.style.display = 'block';
                 }
@@ -134,6 +140,27 @@ document.addEventListener('DOMContentLoaded', () => {
             } finally {
                 btn.disabled = false;
                 btn.querySelector('.btn-text').textContent = 'Obtenir mon offre gratuite';
+            }
+        });
+    }
+
+    // Gestion de la fermeture du Modal
+    const modal = document.getElementById('success-modal');
+    if (modal) {
+        const closeBtn = modal.querySelector('.modal-close');
+        const returnBtn = modal.querySelector('.modal-btn-close');
+
+        const closeModal = () => {
+            modal.style.display = 'none';
+        };
+
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (returnBtn) returnBtn.addEventListener('click', closeModal);
+
+        // Fermer si on clique à l'extérieur du contenu
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
             }
         });
     }
