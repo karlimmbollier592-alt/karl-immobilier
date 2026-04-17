@@ -94,4 +94,47 @@ document.addEventListener('DOMContentLoaded', () => {
         const montrealDate = new Date(new Date().toLocaleString("en-US", {timeZone: "America/Toronto"}));
         yearSpan.textContent = montrealDate.getFullYear();
     }
+
+    // Soumission du formulaire vers Monday CRM
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const btn = document.getElementById('btn-submit');
+            const successMsg = document.getElementById('form-success');
+            const errorMsg = document.getElementById('form-error');
+
+            const nom = document.getElementById('nom').value.trim();
+            const telephone = document.getElementById('telephone').value.trim();
+            const adresse = document.getElementById('adresse').value.trim();
+
+            successMsg.style.display = 'none';
+            errorMsg.style.display = 'none';
+            btn.disabled = true;
+            btn.querySelector('.btn-text').textContent = 'Envoi en cours...';
+
+            try {
+                const response = await fetch('/.netlify/functions/monday-lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ nom, telephone, adresse }),
+                });
+
+                const data = await response.json();
+
+                if (response.ok && data.success) {
+                    contactForm.reset();
+                    successMsg.style.display = 'block';
+                } else {
+                    errorMsg.style.display = 'block';
+                }
+            } catch {
+                errorMsg.style.display = 'block';
+            } finally {
+                btn.disabled = false;
+                btn.querySelector('.btn-text').textContent = 'Obtenir mon offre gratuite';
+            }
+        });
+    }
 });

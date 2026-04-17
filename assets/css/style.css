@@ -332,7 +332,7 @@ img {
 }
 
 .main-nav a {
-    color: var(--color-text-heading); /* Liens en bleu foncé par défaut */
+    color: var(--color-white); /* Liens en blanc par défaut */
     font-weight: 600;
     font-size: 0.95rem;
 }
@@ -375,7 +375,7 @@ img {
     display: block;
     width: 24px;
     height: 2px;
-    background-color: var(--color-text-heading); /* Hamburger foncé par défaut */
+    background-color: var(--color-white); /* Hamburger blanc par défaut */
     margin-bottom: 6px;
     border-radius: 2px;
     transition: 0.3s;
@@ -403,13 +403,13 @@ img {
    ========================================================================== */
 .brand-hero {
     padding-top: 120px; /* Espace pour le header fixe transparent */
-    padding-bottom: 100px; /* Espace pour la vague en bas */
-    min-height: 90vh;
+    padding-bottom: 120px; /* Espace pour la barre en bas */
+    min-height: 100vh;
     display: flex;
     align-items: center;
     background-color: var(--color-dark);
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden retiré pour permettre à la barre de flotter par-dessus la section suivante */
 }
 
 .hero-bg-bw {
@@ -423,23 +423,31 @@ img {
     background-repeat: no-repeat;
 }
 
+.hero-bg-bw::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 70%);
+    z-index: 1;
+}
+
 .brand-hero .hero-container {
     position: relative;
     z-index: 30;
 }
 
 .brand-hero .hero-content {
-    max-width: 800px;
+    max-width: 1000px;
     padding: 2rem 0 4rem 0; /* Plus d'espace en bas pour éviter la vague */
 }
 
 .brand-title {
-    font-size: clamp(2.5rem, 4.5vw, 4rem);
+    font-size: clamp(1.5rem, 2.8vw, 2.8rem);
     font-family: var(--font-heading);
     font-weight: 900;
     letter-spacing: 0.5px;
-    line-height: 1.4;
-    margin-bottom: 2rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
 }
 
@@ -453,17 +461,17 @@ img {
 }
 
 .brand-subtitle {
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-family: var(--font-heading);
     font-weight: 700;
-    margin-bottom: 2rem;
-    line-height: 2;
+    margin-bottom: 1rem;
+    line-height: 1.8;
     letter-spacing: 0.5px;
 }
 
 .brand-box-dark {
-    background-color: var(--color-dark);
-    color: var(--color-white);
+    background-color: var(--color-white);
+    color: var(--color-dark);
     padding: 0.2rem 0.6rem;
     display: inline;
     box-decoration-break: clone;
@@ -473,9 +481,9 @@ img {
 .brand-hook {
     font-size: 1rem;
     font-weight: 700;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     font-family: var(--font-heading);
-    line-height: 2;
+    line-height: 1.8;
 }
 
 .brand-box-white {
@@ -487,20 +495,17 @@ img {
     -webkit-box-decoration-break: clone;
 }
 
-/* Bouton Charte */
+/* Bouton Charte - Assorti au reste du site */
 .brand-hero .btn-primary {
     background-color: var(--color-white);
     color: var(--color-primary);
-    border: 2px solid var(--color-white);
-    font-family: var(--font-heading);
-    font-weight: 900;
-    letter-spacing: 1px;
+    max-width: 450px; /* Assez large pour rester sur une seule ligne */
+    font-weight: 700;
 }
 
 .brand-hero .btn-primary:hover {
-    background-color: var(--color-dark);
-    color: var(--color-white);
-    border-color: var(--color-dark);
+    background-color: var(--color-light);
+    color: var(--color-primary-hover);
 }
 
 /* Utilities */
@@ -509,27 +514,94 @@ img {
 .z-30 { z-index: 30; }
 .uppercase { text-transform: uppercase; }
 
-/* Modifier the wave divider inside brand hero */
-.brand-hero .custom-shape-divider-bottom {
+/* Bande bleue en bas du hero (Full width, premium) */
+.hero-bottom-bar {
     position: absolute;
-    bottom: -1px;
+    bottom: 0;
     left: 0;
     width: 100%;
-    overflow: hidden;
-    line-height: 0;
-    z-index: 20;
+    background: rgba(40, 72, 221, 0.95); /* var(--color-primary) avec légère transparence */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1.25rem 0;
+    z-index: 40;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.brand-hero .custom-shape-divider-bottom svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 80px;
-    transform: rotate(180deg);
+.hero-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
 }
 
-.brand-hero .custom-shape-divider-bottom .shape-fill {
-    fill: var(--color-light); /* Ice blue as per brand */
+.hero-bar-logo img {
+    height: 45px;
+    width: auto;
+}
+
+.hero-bar-contact {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.hero-bar-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-white);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    font-family: var(--font-heading);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.hero-bar-item:hover {
+    color: var(--color-light);
+}
+
+.hero-bar-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem;
+    border-radius: 50%;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.hero-bar-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+@media (max-width: 992px) {
+    .hero-bottom-bar {
+        padding: 1.5rem 0;
+    }
+    .hero-bar-container {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-bar-contact {
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .hero-bar-item {
+        font-size: 1.05rem;
+    }
+    .hero-bar-logo img {
+        height: 55px;
+    }
 }
 
 /* Animations Premium */
@@ -690,6 +762,23 @@ img {
     transform: rotate(180deg);
 }
 
+.shape-divider-top {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    z-index: 2;
+}
+
+.shape-divider-top svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 80px;
+}
+
 /* Alternance de la direction de la vague pour un effet naturel */
 .bg-primary .shape-divider-bottom svg {
     transform: rotate(180deg);
@@ -709,6 +798,10 @@ img {
 
 .shape-fill-primary {
     fill: var(--color-primary);
+}
+
+.shape-fill-primary-bottom {
+    fill: #2563EB; /* Correspond à la fin du dégradé de .bg-primary */
 }
 
 /* ==========================================================================
@@ -1236,6 +1329,31 @@ img {
     color: var(--color-text-muted);
 }
 
+.form-feedback {
+    margin-top: 1rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--border-radius);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.form-feedback--success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+}
+
+.form-feedback--error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.form-feedback--error a {
+    color: #991b1b;
+    font-weight: 600;
+}
+
 /* ==========================================================================
    Vidéo
    ========================================================================== */
@@ -1350,6 +1468,64 @@ img {
 
 .read-more:hover {
     text-decoration: underline;
+}
+
+/* ==========================================================================
+   Success Section (Sans pression)
+   ========================================================================== */
+.success-section {
+    padding: var(--spacing-xl) 0;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-dark);
+}
+
+.success-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center right;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.success-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right, rgba(31, 36, 69, 0.95) 0%, rgba(31, 36, 69, 0.8) 45%, rgba(31, 36, 69, 0.1) 100%);
+    z-index: 1;
+}
+
+.success-content {
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    text-align: left;
+}
+
+.success-content .section-title {
+    color: var(--color-white);
+    margin-bottom: 1.5rem;
+}
+
+.success-content .subtitle {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+    .success-bg::after {
+        background: linear-gradient(to bottom, rgba(31, 36, 69, 0.6) 0%, rgba(31, 36, 69, 0.95) 80%);
+    }
+    .success-content {
+        text-align: center;
+        margin: 0 auto;
+        padding-top: 150px; /* Pousse le texte vers le bas pour montrer la maison sur mobile */
+    }
 }
 
 /* ==========================================================================
