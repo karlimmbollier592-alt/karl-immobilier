@@ -77,6 +77,7 @@ exports.handler = async (event) => {
   const today = new Date().toISOString().split('T')[0];
   const pipelineColumns = {
     text_mm07kbrb: adresse,
+    phone_mm2g31s4: { phone: cleanPhone, countryShortName: 'CA' },
     color_mm08hgqf: { label: 'Nouveau lead' },
     color_mm073m73: { label: 'Site Web' },
     date_mm072893: { date: today },
