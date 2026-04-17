@@ -119,7 +119,12 @@ exports.handler = async (event) => {
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ success: true, pipeline_id: pipelineItemId }),
+      body: JSON.stringify({
+        success: true,
+        pipeline_id: pipelineItemId,
+        contact_id: contactItemId,
+        linked: contactItemId ? true : false,
+      }),
     };
   } catch (err) {
     console.error('Création pipeline échouée:', err.message);
