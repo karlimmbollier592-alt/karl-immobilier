@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          server-dir: /acheteursimmobiliersquebec.com/
+          server-dir: /
           local-dir: ./
           dangerous-clean-slate: false
           exclude: |
