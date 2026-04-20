@@ -1,0 +1,49 @@
+name: Deploy to WHC via SFTP
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy static site to WHC
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: /acheteursimmobiliersquebec.com/
+          local-dir: ./
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.claude/**
+            **/node_modules/**
+            CLAUDE.md
+            transcription appel/**
+            **/transcription appel/**
+            .gitignore
+            README.md
+            .DS_Store
+            **/.DS_Store
+            netlify.toml
+            netlify/**
+            Charte-Graphique.jpg
+            Site de reference.txt
+            hostinger.html
+            manus.html
+            manus.css
+            manus.js

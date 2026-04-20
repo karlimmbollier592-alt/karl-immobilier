@@ -5,10 +5,14 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Stack technique
 
 - **Site statique** : HTML/CSS/JS (pas de framework, one-pager simple)
-- **Deploiement** : Netlify (CI/CD via GitHub)
+- **Deploiement** : WHC (Web Hosting Canada) via GitHub Actions FTPS
+- **Hebergement** : WHC cPanel, plan Web Monstre, compte gestio91, serveur beaubien.web-dns1.com
+- **IP serveur** : 167.114.15.225 (DNS) / 148.113.170.104 (SFTP)
+- **Dossier serveur** : /home/gestio91/acheteursimmobiliersquebec.com/
 - **Repo** : https://github.com/karlimmbollier592-alt/karl-immobilier
 - **GitHub client** : karlimmbollier592-alt
-- **Domaine** : a connecter (probablement GoDaddy)
+- **Domaine** : acheteursimmobiliersquebec.com (GoDaddy, DNS pointe vers WHC)
+- **SSL** : AutoSSL Let's Encrypt (expire 2026-07-19), HTTPS force via .htaccess
 - **CRM** : Monday (integration formulaire, phase 2)
 
 ## Commandes
@@ -19,8 +23,9 @@ npx serve .
 # ou
 python3 -m http.server 8000
 
-# Deploy : push sur main, Netlify deploie automatiquement
+# Deploy : push sur main, GitHub Actions deploie automatiquement sur WHC via FTPS
 git push origin main
+# Secrets GitHub requis : FTP_SERVER, FTP_USERNAME, FTP_PASSWORD
 ```
 
 ## Architecture
@@ -113,8 +118,11 @@ Karl achete des immeubles desuets, les renove, et loue au prix du marche. La nou
 
 ## Statut
 
-- Setup initial (creation compte GitHub + Netlify par Luca)
-- Documentation lue et contexte capture
+- Setup initial (creation compte GitHub par Luca)
+- Migration Netlify → WHC completee (2026-04-20)
+- DNS propage, SSL actif, page temporaire en ligne
+- GitHub Actions deploy workflow cree (.github/workflows/deploy.yml)
+- Secrets GitHub a configurer (FTP_SERVER, FTP_USERNAME, FTP_PASSWORD)
 - Prochaine etape : creation du site (phase 1)
 
 ## Lab Notes
