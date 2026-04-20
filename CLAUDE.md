@@ -116,13 +116,27 @@ Karl achete des immeubles desuets, les renove, et loue au prix du marche. La nou
 1. **Phase 1 (en cours)** : Creation du site (one-pager + blog)
 2. **Phase 2** : Integration Monday (quand Karl donne les acces)
 
-## Statut
+## Branches et environnements
 
-- Setup initial (creation compte GitHub par Luca)
-- Migration Netlify → WHC completee (2026-04-20)
-- DNS propage, SSL actif, page temporaire en ligne
-- GitHub Actions deploy workflow cree (.github/workflows/deploy.yml)
-- Secrets GitHub a configurer (FTP_SERVER, FTP_USERNAME, FTP_PASSWORD)
-- Prochaine etape : creation du site (phase 1)
+| Branche | Deploie vers | Contenu |
+|---|---|---|
+| `main` | acheteursimmobiliersquebec.com | Page "en construction" (logo AIQ, bleu fonce) |
+| `dev` | preview.acheteursimmobiliersquebec.com | Le vrai site complet |
+
+**ATTENTION :** Ne PAS merger `main` dans `dev` (ca ecrase le vrai site). Travailler sur `dev`. Merger `dev` dans `main` quand le site est pret pour production.
+
+## Statut (mis a jour 2026-04-20)
+
+- Migration Netlify → WHC completee
+- DNS propage (.com, .ca, preview), SSL actif sur les 3
+- .ca redirige vers .com (301 via .htaccess)
+- Page "en construction" live sur production (.com)
+- Vrai site live sur preview (preview.acheteursimmobiliersquebec.com)
+- 2 workflows GitHub Actions (deploy.yml pour main, deploy-preview.yml pour dev)
+- 5 secrets GitHub configures (FTP_SERVER, FTP_USERNAME, FTP_PASSWORD, PREVIEW_FTP_USERNAME, PREVIEW_FTP_PASSWORD)
+- Integration Monday INACTIVE (Netlify Functions ne marchent pas sur WHC, a reecrire en PHP)
+- **Prochaine etape :** finaliser le site sur branche `dev`, faire valider par Karl, puis basculer en production
 
 ## Lab Notes
+2026-04-20 : Migration Netlify → WHC. Compte FTP chroote (deploy@) pour eviter de toucher au mdp cPanel de Karl. server-dir doit etre "/" car le FTP user est deja chroote dans le bon dossier.
+2026-04-20 : Ne pas merger main→dev, seulement dev→main. Main a un index.html "en construction" different de celui de dev.
