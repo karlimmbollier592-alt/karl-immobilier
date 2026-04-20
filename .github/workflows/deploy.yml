@@ -18,7 +18,7 @@ jobs:
       - name: Prepare coming-soon deploy
         run: |
           mkdir -p deploy-staging/assets/images
-          cp coming-soon/index.html deploy-staging/index.html
+          cp index.html deploy-staging/index.html
           cp assets/images/AIQ-TEXTE-BLANC_f4b2300d.png deploy-staging/assets/images/
 
       - name: Deploy via FTPS
