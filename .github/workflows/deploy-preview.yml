@@ -1,0 +1,49 @@
+name: Deploy Preview to WHC
+
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Deploy preview site to WHC
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTPS
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.PREVIEW_FTP_USERNAME }}
+          password: ${{ secrets.PREVIEW_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          server-dir: /
+          local-dir: ./
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
+            **/.claude/**
+            **/node_modules/**
+            CLAUDE.md
+            transcription appel/**
+            **/transcription appel/**
+            .gitignore
+            README.md
+            .DS_Store
+            **/.DS_Store
+            netlify.toml
+            netlify/**
+            Charte-Graphique.jpg
+            Site de reference.txt
+            hostinger.html
+            manus.html
+            manus.css
+            manus.js

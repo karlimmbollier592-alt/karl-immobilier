@@ -8,12 +8,18 @@ on:
 
 jobs:
   deploy:
-    name: Deploy static site to WHC
+    name: Deploy coming-soon page to WHC
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Prepare coming-soon deploy
+        run: |
+          mkdir -p deploy-staging/assets/images
+          cp coming-soon/index.html deploy-staging/index.html
+          cp assets/images/AIQ-TEXTE-BLANC_f4b2300d.png deploy-staging/assets/images/
 
       - name: Deploy via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -24,26 +30,5 @@ jobs:
           protocol: ftps
           port: 21
           server-dir: /
-          local-dir: ./
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/.claude/**
-            **/node_modules/**
-            CLAUDE.md
-            transcription appel/**
-            **/transcription appel/**
-            .gitignore
-            README.md
-            .DS_Store
-            **/.DS_Store
-            netlify.toml
-            netlify/**
-            Charte-Graphique.jpg
-            Site de reference.txt
-            hostinger.html
-            manus.html
-            manus.css
-            manus.js
+          local-dir: deploy-staging/
+          dangerous-clean-slate: true
